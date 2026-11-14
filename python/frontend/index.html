@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Nexus: plan your day, track habits and sleep, and talk to your personal assistant.">
+  <title>Nexus — Your personal assistant</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20rx%3D%2212%22%20fill%3D%22%237c3aed%22%2F%3E%3Cg%20transform%3D%22translate(8%208)%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%205a3%203%200%200%200-5.7-1.3A4%204%200%200%200%203%2010a4%204%200%200%200%201%207.6A4%204%200%200%200%2012%2019V5Zm0%200a3%203%200%200%201%205.7-1.3A4%204%200%200%201%2021%2010a4%204%200%200%201-1%207.6A4%204%200%200%201%2012%2019M8%207l-2%203m3%203-3%203m10-9%202%203m-3%203%203%203%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="trackers.css">
+  <link rel="stylesheet" href="experience.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H5l-3 2v-10a9 9 0 0 1 18 0Z"/><path d="M7 10h8M7 14h5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 3c-8 0-16 2-16 10a7 7 0 0 0 12 5c4-4 4-9 4-15ZM3 22 15 10"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5v16M12 5C8 2 4 3 2 4v15c4-1 7 0 10 2 3-2 6-3 10-2V4c-2-1-6-2-10 1Z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11Z"/></symbol>
+    <symbol id="i-move" viewBox="0 0 24 24"><path d="m3 8 5 5m8-5 5 5M6 5l-4 4m20 6-4 4M5 15l10-10M9 19 19 9"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4M12 14v3"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-progress" viewBox="0 0 24 24"><path d="M4 20V10M12 20V4M20 20v-7"/></symbol>
+    <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 5a3 3 0 0 0-5.7-1.3A4 4 0 0 0 3 10a4 4 0 0 0 1 7.6A4 4 0 0 0 12 19V5Zm0 0a3 3 0 0 1 5.7-1.3A4 4 0 0 1 21 10a4 4 0 0 1-1 7.6A4 4 0 0 1 12 19"/><path d="M8 7a3 3 0 0 1-2 3m3 3a3 3 0 0 0-3 3m10-9a3 3 0 0 0 2 3m-3 3a3 3 0 0 1 3 3M9 19v-2m6 2v-2"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></symbol>
+    <symbol id="i-speaker" viewBox="0 0 24 24"><path d="m11 5-6 4H2v6h3l6 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+  </defs></svg>
+  <a class="skip-link" href="#message-input">Skip to message input</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Workspace navigation">
+      <a class="brand" href="#chat" aria-label="Nexus home"><span class="brand-mark"><svg aria-hidden="true"><use href="#i-brain"/></svg></span><span>Nexus</span></a>
+      <div class="workspace-label">YOUR PERSONAL SPACE</div>
+      <nav class="nav-list" aria-label="Main">
+        <button class="nav-item active" data-view="chat" aria-current="page"><svg><use href="#i-chat"/></svg><span>Chat</span></button>
+        <button class="nav-item" data-view="progress"><svg><use href="#i-progress"/></svg><span>Progress Tracker</span></button>
+        <button class="nav-item" data-open-reminders aria-controls="reminders-drawer" aria-haspopup="dialog"><svg><use href="#i-bell"/></svg><span>Reminders</span><span id="nav-reminder-count" class="count-pill">0</span></button>
+      </nav>
+    </aside>
+    <div class="workspace">
+      <header class="topbar"><div class="breadcrumbs">Your workspace <span>/</span> <strong id="breadcrumb">Chat</strong></div><div class="topbar-right"><span id="today-date"></span><a id="account-link" class="account-link" href="/signin-with-chatgpt?return_to=%2F" target="_top">Sign in to save reminders</a></div></header>
+      <main>
+        <section id="view-chat" class="view" aria-labelledby="chat-title">
+          <div class="chat-layout">
+            <section class="chat-card" aria-label="Conversation">
+              <div class="chat-intro"><h1 id="chat-title">Your day, a little easier.</h1><p>Plan out your day. Become more efficient.</p></div>
+              <div class="chat-toolbar"><div class="assistant-identity"><span class="assistant-avatar"><svg aria-hidden="true"><use href="#i-brain"/></svg></span><span><strong>Nexus assistant</strong><small id="assistant-subtitle">Here to help you get started</small></span></div><button class="text-button" id="clear-chat">Clear chat</button></div>
+              <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Chat messages"></div>
+              <div class="composer-wrap"><form id="chat-form"><label class="sr-only" for="message-input">Your message</label><textarea id="message-input" rows="2" maxlength="2000" placeholder="Ask a question or tell me what you need…"></textarea><div class="composer-bottom"><button id="voice-input" type="button" class="voice-button" aria-label="Use voice input" aria-pressed="false"><svg><use href="#i-mic"/></svg><span>Speak</span></button><span class="input-hint">Enter to send <span>·</span> Shift + Enter for a new line</span><button id="send-button" class="send-button" type="submit" aria-label="Send message" disabled><svg><use href="#i-arrow"/></svg></button></div></form><div class="voice-controls"><label><input type="checkbox" id="voice-auto"> Read replies aloud</label><button id="voice-stop" class="text-button" type="button">Stop audio</button></div><p id="voice-status" class="voice-status" role="status" aria-live="polite">Tap Speak. Your message sends automatically when you finish speaking.</p></div>
+            </section>
+            <aside class="day-panel" aria-label="Reminders and assistance">
+              <section class="panel-card"><div class="panel-heading"><h2>Your reminders</h2><span class="count-pill" id="side-count">0</span></div><div id="side-reminders"></div><button class="outline-button full-width" data-add-reminder><svg><use href="#i-plus"/></svg>Add a reminder</button><button class="text-button view-all" data-open-reminders>Open reminders →</button></section>
+              <section class="panel-card assistance-panel"><h2>Your progress</h2><p>Make time for what matters.</p><div class="quick-links"><button data-open-tracker="habits"><svg><use href="#i-progress"/></svg>Habits & consistency<span>↗</span></button><button data-open-tracker="sleep"><svg><use href="#i-moon"/></svg>Sleep & rest<span>↗</span></button><button data-prompt="How consistent have I been this week?">Ask about this week<span>↗</span></button></div></section>
+              
+            </aside>
+          </div>
+        </section>
+        <section id="view-progress" class="view tracker-view" hidden aria-labelledby="progress-title">
+          <div class="tracker-page-heading"><h1 id="progress-title">Progress Tracker</h1></div>
+          <div class="tracker-tabs" aria-label="Progress sections"><button id="habits-tab" data-tracker-tab="habits" aria-controls="habits-panel" aria-pressed="true">Habits</button><button id="sleep-tab" data-tracker-tab="sleep" aria-controls="view-sleep" aria-pressed="false">Sleep</button></div>
+          <section id="habits-panel" aria-labelledby="habits-tab">
+          <div id="progress-storage" class="tracker-storage" hidden><span id="tracker-status-progress" role="status">Loading your tracker records…</span><button class="text-button" data-reload-trackers>Reload</button></div>
+          <div id="habit-filters" class="habit-filters" aria-label="Choose a habit"></div>
+          <div class="tracker-stats" id="progress-stats"></div>
+          <div class="progress-layout">
+            <section class="panel-card calendar-card" aria-labelledby="calendar-title">
+              <div class="calendar-toolbar"><div><div class="eyebrow">YOUR HABIT CALENDAR</div><h2 id="calendar-title" aria-live="polite"></h2></div><div class="calendar-actions"><button class="text-button" id="calendar-today">Today</button><button class="icon-button" id="calendar-prev" aria-label="Previous month">←</button><button class="icon-button" id="calendar-next" aria-label="Next month">→</button></div></div>
+              <div class="calendar-weekdays" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+              <div id="habit-calendar" class="habit-calendar" aria-label="Choose a date"></div>
+              <div class="calendar-legend"><span><span class="legend-tick" aria-hidden="true">✓</span> Completed</span><span>Unmarked dates have no completions logged.</span></div>
+            </section>
+            <section class="panel-card selected-day" aria-labelledby="selected-date"><div class="eyebrow">DAILY CHECK-IN</div><h2 id="selected-date"></h2><p id="selected-date-summary" class="tracker-muted"></p><div id="daily-habits" class="daily-habits"></div><p class="tracker-small">One check-in per habit per day. Tap again to mark it incomplete.</p></section>
+          </div>
+          <section class="panel-card habit-overview" aria-labelledby="habits-title"><div class="tracker-section-heading"><div><h2 id="habits-title">Your habits</h2><p class="tracker-muted" id="week-caption"></p></div><div class="habit-heading-actions"><span class="small-tag">Monday–Sunday</span><button class="primary-button" id="add-habit">New habit</button></div></div><div id="habit-overview"></div><div id="habit-starters" class="habit-starters"><span>Start with a habit you care about:</span><button class="outline-button" data-habit-name="Gym">Gym</button><button class="outline-button" data-habit-name="Running">Running</button><button class="outline-button" data-habit-name="Studying">Studying</button><button class="outline-button" data-habit-name="Coding">Coding</button></div><p class="tracker-small">Weekly percentage uses your current targets, capped per habit. Targets are not prorated for partial weeks. A day streak counts consecutive calendar days completed; a rest day breaks that streak.</p></section>
+          <section class="panel-card year-panel" aria-labelledby="year-title"><div class="tracker-section-heading"><div><h2 id="year-title"></h2><p class="tracker-muted" id="year-summary"></p></div><label class="year-select">Year <select id="progress-year" aria-label="Progress year"></select></label></div><div id="year-chart" class="year-chart" aria-label="Monthly habit completions"></div><p class="tracker-small">Each recorded habit completion counts once. These are totals, not estimated progress.</p></section>
+          </section>
+        <section id="view-sleep" class="tracker-subpanel" hidden aria-labelledby="sleep-title">
+          <div class="page-heading"><div><div class="eyebrow">MAKE ROOM FOR REST</div><h2 class="subpage-title" id="sleep-title">Get to know your nights.</h2><p>Log your sleep and notice the patterns over time.</p></div><button class="primary-button" id="add-sleep"><svg><use href="#i-plus"/></svg>Log sleep</button></div>
+          <div id="sleep-storage" class="tracker-storage" hidden><span id="tracker-status-sleep" role="status">Loading your tracker records…</span><button class="text-button" data-reload-trackers>Reload</button></div>
+          <div class="tracker-stats" id="sleep-stats"></div>
+          <div class="sleep-layout"><section class="panel-card sleep-chart-card" aria-labelledby="sleep-chart-title"><div class="tracker-section-heading"><div><h2 id="sleep-chart-title">The last seven days</h2><p class="tracker-muted" id="sleep-chart-caption"></p></div><span class="small-tag" id="sleep-chart-goal"></span></div><div id="sleep-chart" class="sleep-chart" aria-label="Sleep duration by wake-up date"></div><div class="calendar-legend"><span><i class="legend-dot"></i> Logged sleep</span><span><i class="legend-line"></i> Your goal</span><span>— No log</span></div></section>
+          <section class="panel-card sleep-goal-card"><span class="sleep-symbol" aria-hidden="true">☾</span><div class="eyebrow">YOUR OWN RHYTHM</div><h2>A goal that works for you.</h2><p class="tracker-muted">Choose the amount of sleep you want to aim for each night.</p><form id="sleep-goal-form"><label for="sleep-goal">Hours per night</label><div class="goal-input-row"><input id="sleep-goal" type="number" min="1" max="16" step="0.25" value="8" required><span>hours</span></div><button class="primary-button full-width" id="save-sleep-goal" type="submit">Save goal</button><p id="sleep-goal-error" class="form-error" role="alert"></p></form><p class="tracker-small">Your goal is a personal preference. It does not change your logged sleep.</p></section></div>
+          <section class="panel-card sleep-history-card" aria-labelledby="sleep-history-title"><div class="tracker-section-heading"><div><h2 id="sleep-history-title">Recent sleep</h2><p class="tracker-muted">Recorded by wake-up date. Edit a session to correct its details.</p></div><span class="small-tag">Manual logs</span></div><div id="sleep-history"></div><button id="more-sleep" class="text-button" hidden>Show more records</button><p class="tracker-small">Duration is the elapsed time between bedtime and wake-up. It does not subtract time spent awake. Missing days are excluded from averages; multiple sessions on a date are added together. Records keep their original timezone.</p></section>
+        </section>
+        </section>
+      </main>
+    </div>
+  </div>
+  <dialog id="reminders-drawer" class="reminders-drawer" aria-labelledby="reminders-drawer-title"><div class="dialog-heading"><h2 id="reminders-drawer-title">Your reminders <span id="all-count" class="count-pill">0</span></h2><button class="icon-button" type="button" data-close="reminders-drawer" aria-label="Close reminders">×</button></div><p id="reminder-note"></p><div class="drawer-actions"><button class="primary-button" data-add-reminder>Add a reminder</button><button class="text-button" id="refresh-reminders" type="button">Refresh reminders</button></div><div id="all-reminders"></div></dialog>
+  <dialog id="reminder-dialog" aria-labelledby="reminder-dialog-title"><form id="reminder-form"><div class="dialog-heading"><h2 id="reminder-dialog-title">A little reminder</h2><button type="button" class="icon-button" data-close="reminder-dialog" aria-label="Close reminder form"><svg><use href="#i-close"/></svg></button></div><p>What would you like to remember?</p><label for="reminder-task">Task</label><input id="reminder-task" required maxlength="300" placeholder="e.g. Revise database systems" autocomplete="off"><label for="reminder-time">Date and time</label><input id="reminder-time" type="datetime-local" required><p class="field-hint">Uses your device’s local time. No background notifications.</p><p id="reminder-error" class="form-error" role="alert"></p><div class="dialog-actions"><button type="button" class="outline-button" data-close="reminder-dialog">Cancel</button><button class="primary-button" type="submit">Add reminder</button></div></form></dialog>
+
+  <dialog id="habit-dialog" aria-labelledby="habit-dialog-title"><form id="habit-form"><div class="dialog-heading"><h2 id="habit-dialog-title">Create a habit</h2><button class="icon-button" type="button" data-close="habit-dialog" aria-label="Close habit form">×</button></div><input type="hidden" id="habit-id"><label for="habit-name">Habit name</label><input id="habit-name" maxlength="60" required placeholder="e.g. Gym, studying, reading"><div class="tracker-form-grid"><div><label for="habit-target">Weekly target (days)</label><input id="habit-target" type="number" min="1" max="7" step="1" value="3" required></div><div><label for="habit-start">Track from</label><input id="habit-start" type="date" required></div></div><p class="field-hint">Choose an earlier start date if you want to log past completions.</p><p class="form-error" id="habit-error" role="alert"></p><div class="dialog-actions"><button type="button" class="outline-button" data-close="habit-dialog">Cancel</button><button type="submit" id="save-habit" class="primary-button">Save habit</button></div></form></dialog>
+  <dialog id="sleep-dialog" aria-labelledby="sleep-dialog-title"><form id="sleep-form"><div class="dialog-heading"><h2 id="sleep-dialog-title">Log your sleep</h2><button type="button" class="icon-button" data-close="sleep-dialog" aria-label="Close sleep form">×</button></div><input type="hidden" id="sleep-id"><label for="sleep-bedtime">Bedtime — date and time</label><input id="sleep-bedtime" type="datetime-local" required><label for="sleep-wake">Wake-up — date and time</label><input id="sleep-wake" type="datetime-local" required><p class="sleep-duration-preview" id="sleep-duration-preview" aria-live="polite">Enter both dates and times.</p><p class="field-hint" id="sleep-timezone"></p><label for="sleep-quality">How did your sleep feel?</label><select id="sleep-quality" required><option value="">Choose quality</option><option value="1">1 · Very poor</option><option value="2">2 · Poor</option><option value="3">3 · Okay</option><option value="4">4 · Good</option><option value="5">5 · Great</option></select><label for="sleep-notes">Notes (optional)</label><textarea id="sleep-notes" rows="3" maxlength="1000" placeholder="Anything you noticed about your night"></textarea><p class="form-error" id="sleep-error" role="alert"></p><div class="dialog-actions"><button type="button" class="outline-button" data-close="sleep-dialog">Cancel</button><button class="primary-button" type="submit" id="save-sleep">Save sleep</button></div></form></dialog>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title"><div class="dialog-heading"><h2 id="confirm-title"></h2></div><p id="confirm-description"></p><div class="dialog-actions"><button id="confirm-cancel" class="outline-button">Cancel</button><button id="confirm-accept" class="primary-button"></button></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript><div class="noscript-note">Enable JavaScript to use the chat and reminders.</div></noscript>
+</body>
+</html>

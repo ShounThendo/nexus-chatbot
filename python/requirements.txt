@@ -1,0 +1,3 @@
+# The bot and local web server use the Python standard library.
+# Windows needs IANA timezone data for zoneinfo:
+tzdata>=2025.2
